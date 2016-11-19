@@ -5,11 +5,12 @@ source 'https://rubygems.org'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 # Use pg as the database for Active Record
 gem 'pg'
-
+# YAML settings
 gem 'settingslogic'
-
+# rails console
 gem 'pry-rails'
-
+# crontab
+gem 'whenever'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets

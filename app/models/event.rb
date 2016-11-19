@@ -52,6 +52,21 @@ class Event < ApplicationRecord
     accu_result
   end
 
+  def self.create_from_raw_data(raw_data_list)
+    source_to_id_map = Source.get_source_to_id_map
+    raw_data_list.each do |raw_data|
+      e = Event.new
+      %w(title location start_date end_date description url host fee number_of_people).each do |attr|
+        e.send("#{attr}=", raw_data[attr])
+      end
+      raw_data["type"].each do |type|
+        e.add_event_type(type) 
+      end
+      e.source_id = source_to_id_map[raw_data["source"]] || 0
+      e.save
+    end
+  end
+
   def add_event_type(name)
     # find or create
     event_type = EventType.find_or_create_by(name: name)

@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+
+
+dummy = <<'DOC'
+[{"title":"Web Dewgong Meet up!","location":"中","description":"Et rem officiis quia. Vero itaque temporibus necessitatibus rerum minus. Qui quia dignissimos commodi officia voluptatem occaecati est. At voluptatem dolores. Nisi architecto doloremque magnam aperiam quae porro.\nSoluta impedit voluptatibus. Temporibus odio facilis quos. Autem corporis et inventore iusto repellat. Voluptatibus sed mollitia. Quidem et et itaque in dolorem porro sit.\nLaborum saepe modi nesciunt perferendis. Enim aperiam cum. Cum aut nihil sint qui.","url":"http://howelltorphy.io/anais_kirlin","host":"Moltres","fee":665,"number_of_people":44,"type":["Ruby","前端"],"source":"kktix","start_date":"2016-11-18 10:38","end_date":"2016-11-20 10:38"},{"title":"Python Spearow Meet up!","location":"北","description":"Eligendi voluptatum asperiores. Neque dicta sit vel ut qui dolores occaecati. Inventore laborum vero illo sunt odio. Facere similique sit et unde perferendis dignissimos. Voluptas provident numquam porro aliquid.\nCulpa ut in quam hic similique fugiat. Animi dolore velit sed maiores vitae est. Ab veritatis repudiandae voluptas eos sequi. Dignissimos ut soluta asperiores neque. Sed libero sed numquam consequatur quae.\nDoloremque occaecati officiis facere quibusdam possimus rem aliquid. Qui qui autem voluptatem neque voluptas. Eos et et rerum porro quod in.","url":"http://howelllabadie.biz/carmelo","host":"Jynx","fee":140,"number_of_people":36,"type":["Ruby","Python"],"source":"kktix","start_date":"2016-11-19 10:38","end_date":"2016-11-20 10:38"}]
+DOC
+
+puts dummy

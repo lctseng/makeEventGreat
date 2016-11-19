@@ -1,0 +1,6 @@
+crawler:
+  dummy: 
+    path: external/crawlers/dummy.rb
+classifier:
+  path: external/classifier.rb
+
