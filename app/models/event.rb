@@ -12,7 +12,7 @@ class Event < ApplicationRecord
       case key
       when "keyword"
 	# ANDed
-	q = "%#{json["keyword"]}%"
+	q = "%#{json[key]}%"
 	query = query.where("lower(title) like lower(?) or lower(description) like lower(?)", q, q)
       when "type"
         # ANDed
@@ -24,8 +24,10 @@ class Event < ApplicationRecord
       when "location"
         # ORed
         value = [value] unless value.is_a? Array
-        query_str = Array.new(value.size, "lower(location) like lower(?)").join(" OR ")
+        query_str = Array.new(value.size, "lower(#{key}) like lower(?)").join(" OR ")
         query = query.where(query_str, *(value.map{|s| "%#{s}%"}))
+      when "host"
+	query = query.where("lower(#{key}) like lower(?)", "%#{json[key]}%")
       end
     end
     # apply all filters
