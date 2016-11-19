@@ -1,0 +1,2 @@
+class EventTypeship < ApplicationRecord
+end
