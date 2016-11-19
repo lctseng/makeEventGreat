@@ -43,8 +43,12 @@ class Event < ApplicationRecord
 
   def as_json(options = { })
     super((options || { }).merge({
-      :methods => [:type, :source]
-    }))
+      :methods => [:type, :source],
+      :except => [:start_date, :end_date, :source_id, :created_at, :updated_at, :id]
+    })).merge({
+      start_date: fmt_time(start_date),
+      end_date: fmt_time(end_date),
+    })
   end
 
   def type
@@ -53,6 +57,10 @@ class Event < ApplicationRecord
 
   def source
     Source.find(self.source_id)
+  end
+
+  def fmt_time(time)
+    time.strftime("%Y-%m-%d %H:%M")
   end
 
 end
