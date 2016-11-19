@@ -35,6 +35,13 @@ class Event < ApplicationRecord
         if value["upper"]
           query = query.where("#{key} <= ?", value["upper"])
         end
+      when "date"
+        if value["start"]
+          query = query.where("start_date >= ?", value["start"])
+        end
+        if value["end"]
+          query = query.where("end_date <= ?", value["end"])
+        end
       end
     end
     # apply all filters
