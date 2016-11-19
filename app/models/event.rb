@@ -6,7 +6,7 @@ class Event < ApplicationRecord
   end
 
   def self.query_from_json(json)
-    query = all
+    query = order(:start_date)
     filters = []
     json.each do |key, value|
       case key
