@@ -9,6 +9,7 @@ FactoryGirl.define do
     host { Faker::Pokemon.name }
     fee { rand(1000) }
     number_of_people { rand(100) }
+    source_id { 1 }
 
 
     after(:build) do |event|

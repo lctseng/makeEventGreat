@@ -14,6 +14,8 @@ class Event < ApplicationRecord
 	q = "%#{json["keyword"]}%"
 	query = query.where("lower(title) like lower(?) or lower(description) like lower(?)", q, q)
       when "type"
+        value = [value] unless value.is_a? Array
+        query = query.includes(:event_types)
 	filters << Proc.new do |events|
 	  events.select{|e| (value - e.event_types.map(&:name)).empty?}
 	end
@@ -41,12 +43,16 @@ class Event < ApplicationRecord
 
   def as_json(options = { })
     super((options || { }).merge({
-      :methods => [:type]
+      :methods => [:type, :source]
     }))
   end
 
   def type
     event_types.map(&:name)
+  end
+
+  def source
+    Source.find(self.source_id)
   end
 
 end
