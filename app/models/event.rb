@@ -1,5 +1,5 @@
 class Event < ApplicationRecord
-  has_and_belongs_to_many :event_types
+  has_and_belongs_to_many :event_types, dependent: :destroy
 
   def self.search_by_json(json)
     query_from_json(json)
@@ -11,14 +11,21 @@ class Event < ApplicationRecord
     json.each do |key, value|
       case key
       when "keyword"
+	# ANDed
 	q = "%#{json["keyword"]}%"
 	query = query.where("lower(title) like lower(?) or lower(description) like lower(?)", q, q)
       when "type"
+        # ANDed
         value = [value] unless value.is_a? Array
         query = query.includes(:event_types)
 	filters << Proc.new do |events|
 	  events.select{|e| (value - e.event_types.map(&:name)).empty?}
 	end
+      when "location"
+        # ORed
+        value = [value] unless value.is_a? Array
+        query_str = Array.new(value.size, "lower(location) like lower(?)").join(" OR ")
+        query = query.where(query_str, *(value.map{|s| "%#{s}%"}))
       end
     end
     # apply all filters
