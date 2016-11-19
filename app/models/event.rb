@@ -2,11 +2,29 @@ class Event < ApplicationRecord
   has_and_belongs_to_many :event_types
 
   def self.search_by_json(json)
-    where("lower(title) like lower(?)", "%#{json[:keyword]}%")
+    query_from_json(json)
   end
 
-  def make_query_from_json(json)
-
+  def self.query_from_json(json)
+    query = all
+    filters = []
+    json.each do |key, value|
+      case key
+      when "keyword"
+	q = "%#{json["keyword"]}%"
+	query = query.where("lower(title) like lower(?) or lower(description) like lower(?)", q, q)
+      when "type"
+	filters << Proc.new do |events|
+	  events.select{|e| (value - e.event_types.map(&:name)).empty?}
+	end
+      end
+    end
+    # apply all filters
+    accu_result = query
+    filters.each do |filter|
+      accu_result = filter.call(accu_result)
+    end
+    accu_result
   end
 
   def add_event_type(name)
@@ -19,6 +37,16 @@ class Event < ApplicationRecord
     else
       false
     end
+  end
+
+  def as_json(options = { })
+    super((options || { }).merge({
+      :methods => [:type]
+    }))
+  end
+
+  def type
+    event_types.map(&:name)
   end
 
 end
