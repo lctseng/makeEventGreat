@@ -21,11 +21,11 @@ ActiveRecord::Schema.define(version: 20161119051446) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "event_typeships", id: false, force: :cascade do |t|
+  create_table "event_types_events", id: false, force: :cascade do |t|
     t.integer "event_id"
     t.integer "event_type_id"
-    t.index ["event_id"], name: "index_event_typeships_on_event_id", using: :btree
-    t.index ["event_type_id"], name: "index_event_typeships_on_event_type_id", using: :btree
+    t.index ["event_id"], name: "index_event_types_events_on_event_id", using: :btree
+    t.index ["event_type_id"], name: "index_event_types_events_on_event_type_id", using: :btree
   end
 
   create_table "events", force: :cascade do |t|
