@@ -28,6 +28,13 @@ class Event < ApplicationRecord
         query = query.where(query_str, *(value.map{|s| "%#{s}%"}))
       when "host"
 	query = query.where("lower(#{key}) like lower(?)", "%#{json[key]}%")
+      when "fee", "number_of_people"
+        if value["lower"]
+          query = query.where("#{key} >= ?", value["lower"])
+        end
+        if value["upper"]
+          query = query.where("#{key} <= ?", value["upper"])
+        end
       end
     end
     # apply all filters
