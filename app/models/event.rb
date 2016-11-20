@@ -56,7 +56,7 @@ class Event < ApplicationRecord
     source_to_id_map = Source.get_source_to_id_map
     raw_data_list.each do |raw_data|
       e = Event.new
-      %w(title location start_date end_date description url host fee number_of_people).each do |attr|
+      %w(title location start_date end_date description url image_url host fee number_of_people).each do |attr|
         e.send("#{attr}=", raw_data[attr])
       end
       raw_data["type"].each do |type|

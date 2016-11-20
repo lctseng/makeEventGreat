@@ -6,6 +6,7 @@ FactoryGirl.define do
     end_date { Time.now  + rand(5).days }
     description { Faker::Lorem.paragraphs.join("\n") }
     url { Faker::Internet.url }
+    image_url { "http://placekitten.com/400/300" }
     host { Faker::Pokemon.name }
     fee { rand(1000) }
     number_of_people { rand(100) }
