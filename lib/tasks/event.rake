@@ -20,7 +20,7 @@ namespace :event do
         stdin.write un_typed
         stdin.close
         typed = stdout.read
-        event_raw_data += JSON.parse(typed)
+        event_raw_data += JSON.parse(typed.gsub(/[\t]+/,' '))
       end
     end
     log "Storing to database"

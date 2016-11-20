@@ -1,6 +1,6 @@
 crawler:
-  dummy: 
-    path: external/crawlers/dummy.rb
+  kktix: 
+    path: external/crawlers/kktix.py
 classifier:
   path: external/classifier.rb
 

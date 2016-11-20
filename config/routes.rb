@@ -3,4 +3,6 @@ Rails.application.routes.draw do
   namespace "api" do
     post "search", to: "search#search_events"
   end
+
+  resources "search", only: [:index]
 end

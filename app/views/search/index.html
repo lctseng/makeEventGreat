@@ -1,0 +1,66 @@
+<p class="appNameEng">Make Events Great Again !</p>
+
+<form id="searchForm" action="" method="post">
+  <div class="eventKeyword">
+    <input type="text" id="eventKeyword" placeholder="請輸入欲尋找的「活動名稱」、「簡介」">
+  </div>
+
+  <div class="hostKeyword">
+    <input type="text" id="hostKeyword" placeholder="或是想搜尋的「主辦單位」">
+  </div>
+
+  <div class="positionCheck">
+    <p>地點：</p>
+    <p>北</p>
+    <input type="checkbox" id="north">
+    <p>中</p>
+    <input type="checkbox" id="medium">
+    <p>南</p>
+    <input type="checkbox" id="south">
+    <p>其他</p>
+    <input type="checkbox" id="other">
+  </div>
+
+  <div class="typeCheck">
+    <p>類別：</p>
+    <p>A</p>
+    <input type="checkbox" id="typeA">
+    <p>B</p>
+    <input type="checkbox" id="typeB">
+    <p>C</p>
+    <input type="checkbox" id="typeC">
+    <p>D</p>
+    <input type="checkbox" id="typeD">
+  </div>
+
+  <div class="timeCheck">
+    <p>時間(YYYY-MM-DD 24h:60m)：</p>
+    <input type="text" id="minTime"><p>~</p><input type="text" id="maxTime">
+  </div>
+
+  <div class="feeCheck">
+    <p>費用：</p>
+    <input type="number" id="minFee"><p>~</p><input type="number" id="maxFee">
+  </div>
+
+  <div class="attendCheck">
+    <p>參加人數：</p>
+    <input type="number" id="minPeople"><p>~</p><input type="number" id="maxPeople">
+  </div>
+
+  <!--  -->
+  <button type="submit" name="button" id="submitBtn">Submit Form</button>
+
+</form>
+
+<div class="resultDiv">
+  <p class="title">活動標題：'+inputData.title+'</p>
+  <p class="location">活動地點：'+inputData.location+'</p>
+  <p class="date">活動日期：'+inputData.start_date+' ~ '+inputData.end_date+'</p>
+  <p class="type">活動類型：'+typeList+'</p>
+  <p class="description">活動介紹：'+inputData.description+'</p>
+  <p class="url">活動報名網址：'+inputData.url+'</p>
+  <p class="host">活動主辦單位：'+inputData.host+'</p>
+  <p class="fee">活動費用：'+inputData.fee+'</p>
+  <p class="number_of_people">活動人數：'+inputData.number_of_people+'</p>
+</div>
