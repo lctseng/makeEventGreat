@@ -29,17 +29,17 @@ class Event < ApplicationRecord
       when "host"
 	query = query.where("lower(#{key}) like lower(?)", "%#{json[key]}%")
       when "fee", "number_of_people"
-        if value["lower"]
+        if value["lower"].present?
           query = query.where("#{key} >= ?", value["lower"])
         end
-        if value["upper"]
+        if value["upper"].present?
           query = query.where("#{key} <= ?", value["upper"])
         end
       when "date"
-        if value["start"]
+        if value["start"].present?
           query = query.where("start_date >= ?", value["start"])
         end
-        if value["end"]
+        if value["end"].present?
           query = query.where("end_date <= ?", value["end"])
         end
       end
