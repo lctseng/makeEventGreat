@@ -8,13 +8,13 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: 5
+  host: localhost
+  username: great_event
+  port: 65432
 
 development:
   <<: *default
   database: greate_events_collector_development
-  host: localhost
-  username: great_event
-  port: 65432
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -22,9 +22,6 @@ development:
 test:
   <<: *default
   database: greate_events_collector_test
-  host: localhost
-  username: great_event
-  port: 65432
 
 production:
   <<: *default
